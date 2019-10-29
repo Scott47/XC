@@ -1,0 +1,47 @@
+[
+    {
+    "model": "xcapp.team",
+    "pk": 1,
+    "fields": {
+      "meet_time": "14:06:30.047Z",
+      "place": 21,
+      "PR": true,
+      "meet_id": 1,
+      "runner_id": 1
+    }
+  },
+  {
+    "model": "xcapp.team",
+    "pk": 1,
+    "fields": {
+      "meet_time": "10:00:30.047Z",
+      "place": 21,
+      "PR": true,
+      "meet_id": 1,
+      "runner_id": 1
+    }
+  },
+  {
+    "model": "xcapp.team",
+    "pk": 1,
+    "fields": {
+      "meet_time": "8:00:30.047Z",
+      "place": 4,
+      "PR": true,
+      "meet_id": 2,
+      "runner_id": 2
+    }
+  },
+  {
+    "model": "xcapp.team",
+    "pk": 1,
+    "fields": {
+      "meet_time": "9:30:30.047Z",
+      "place": 12,
+      "PR": false,
+      "meet_id": 3,
+      "runner_id": 2
+    }
+}
+
+]

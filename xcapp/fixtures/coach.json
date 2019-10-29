@@ -1,0 +1,12 @@
+[
+    {
+      "model": "xcapp.coach",
+      "pk": 1,
+      "fields": {
+        "user_id": 1,
+        "first_name": "William",
+        "last_name": "Quinn",
+        "phone_number": "555-555-5555"
+      }
+    }
+  ]

@@ -1,0 +1,23 @@
+[
+    {
+        "model": "xcapp.team",
+        "pk": 1,
+        "fields": {
+            "team_name": "Freshman"
+        }
+    },
+    {
+        "model": "xcapp.team",
+        "pk": 2,
+        "fields": {
+          "team_name": "JV"
+        }
+    },
+      {
+        "model": "xcapp.team",
+        "pk": 3,
+        "fields": {
+          "team_name": "Varsity"
+        }
+    }
+  ]
