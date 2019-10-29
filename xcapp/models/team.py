@@ -1,0 +1,22 @@
+from django.db import models
+
+
+class Team(models.Model):
+    FRESHMAN = 'FRESHMEN'
+    JV = 'JV'
+    VARSITY = 'VARSITY'
+    team_name = [
+        (FRESHMAN, 'Freshman'),
+        (JV, 'JV'),
+        (VARSITY, 'Varsity'),
+    ]
+    team_name = models.CharField(
+        max_length=8,
+        choices=team_name,
+        default=FRESHMAN,
+    )
+
+
+    class Meta:
+        verbose_name = ("team")
+        verbose_name_plural = ("teams")

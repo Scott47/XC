@@ -1,0 +1,34 @@
+from django.db import models
+from .team import Team
+
+
+class Runner(models.Model):
+    FRESHMAN = 'FR'
+    SOPHOMORE = 'SO'
+    JUNIOR = 'JR'
+    SENIOR = 'SR'
+    grade = [
+        (FRESHMAN, 'Freshman'),
+        (SOPHOMORE, 'Sophomore'),
+        (JUNIOR, 'Junior'),
+        (SENIOR, 'Senior'),
+    ]
+    grade = models.CharField(
+        max_length=2,
+        choices=grade,
+        default=FRESHMAN,
+    )
+    first_name = models.CharField(max_length = 100)
+    last_name = models.CharField(max_length = 100)
+    phone = models.CharField(max_length=25)
+    email = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    parent = models.CharField(max_length=100)
+    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, related_name='runnerteam')
+
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+    class Meta:
+        verbose_name = ("runner")
+        verbose_name_plural = ("runners")
