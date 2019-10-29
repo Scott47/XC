@@ -5,7 +5,7 @@ from .meet import Meet
 
 class RunnerMeet(models.Model):
 
-    meet_time = models.TimeField()
+    meet_time = models.CharField(max_length=10)
     place = models.IntegerField()
     PR = models.BooleanField(null=True)
     runner = models.ForeignKey(Runner, on_delete=models.DO_NOTHING, related_name='runner')

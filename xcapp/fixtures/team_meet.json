@@ -1,39 +1,39 @@
 [
 {
-    "model": "xcapp.team",
+    "model": "xcapp.teammeet",
     "pk": 1,
     "fields": {
-      "meet_time": "10:00:30.047Z",
+      "meet_time": "8:00am",
       "points": 55,
       "meet_id": 1,
       "team_id": 1
     }
   },
   {
-    "model": "xcapp.team",
+    "model": "xcapp.teammeet",
     "pk": 2,
     "fields": {
-      "meet_time": "10:00:30.047Z",
+      "meet_time": "9:00am",
       "points": 42,
       "meet_id": 2,
       "team_id": 1
     }
   },
   {
-    "model": "xcapp.team",
+    "model": "xcapp.teammeet",
     "pk": 3,
     "fields": {
-      "meet_time": "10:00:30.047Z",
+      "meet_time": "10:00am",
       "points": 42,
       "meet_id": 2,
       "team_id": 2
     }
   },
   {
-    "model": "xcapp.team",
+    "model": "xcapp.teammeet",
     "pk": 4,
     "fields": {
-      "meet_time": "10:00:30.047Z",
+      "meet_time": "7:00pm",
       "points": 42,
       "meet_id": 2,
       "team_id": 3
