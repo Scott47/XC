@@ -1,0 +1,54 @@
+[
+    {
+        "model": "xcapp.meet",
+        "pk": 1,
+        "fields": {
+            "name": "Davidson Invitational",
+            "course": "Davidson Home Course",
+            "latitude": 36.149937,
+            "longitude": -86.812866,
+            "date": "2019-09-23",
+            "distance": 3.01,
+            "number_of_runners": 78
+        }
+    },
+    {
+    "model": "xcapp.meet",
+    "pk": 2,
+    "fields": {
+        "name": "KIPP Invitational",
+        "course": "KIPP Home Course",
+        "latitude": 36.149937,
+        "longitude": -86.812866,
+        "date": "2019-09-16",
+        "distance": 3.01,
+        "number_of_runners": 78
+        }
+    },
+    {
+        "model": "xcapp.meet",
+        "pk": 3,
+        "fields": {
+            "name": "Rossview Invitational",
+            "course": "Rossview Home Course",
+            "latitude": 36.149937,
+            "longitude": -86.812866,
+            "date": "2019-09-23",
+            "distance": 3.01,
+            "number_of_runners": 78
+        }
+    },
+    {
+        "model": "xcapp.meet",
+        "pk": 4,
+        "fields": {
+            "name": "NSS Invitational",
+            "course": "NSS Home Course",
+            "latitude": 36.149937,
+            "longitude": -86.812866,
+            "date": "2019-09-30",
+            "distance": 3.01,
+            "number_of_runners": 25
+        }
+    }
+]

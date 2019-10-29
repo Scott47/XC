@@ -1,0 +1,58 @@
+[
+    {
+      "model": "xcapp.runner",
+      "pk": 1,
+      "fields": {
+        "grade": "FR",
+        "first_name": "Shane",
+        "last_name": "Miller",
+        "phone": "555-555-5555",
+        "email": "runner@runner.com",
+        "address": "500 Interstate Blvd",
+        "parent": "Jacoby Quinn",
+        "team_id": 1
+      }
+    },
+    {
+        "model": "xcapp.runner",
+        "pk": 2,
+        "fields": {
+          "grade": "FR",
+          "first_name": "Joe",
+          "last_name": "Kennerly",
+          "phone": "666-666-6666",
+          "email": "runner@runner.com",
+          "address": "600 Interstate Blvd",
+          "parent": "Jacoby Quinn",
+          "team_id": 1
+        }
+      },
+      {
+        "model": "xcapp.runner",
+        "pk": 3,
+        "fields": {
+          "grade": "FR",
+          "first_name": "Curt",
+          "last_name": "Cato",
+          "phone": "777-777-7777",
+          "email": "runner@runner.com",
+          "address": "700 Interstate Blvd",
+          "parent": "Jacoby Quinn",
+          "team_id": 2
+        }
+      },
+      {
+        "model": "xcapp.runner",
+        "pk": 4,
+        "fields": {
+          "grade": "FR",
+          "first_name": "Danny",
+          "last_name": "Barker",
+          "phone": "888-888-8888",
+          "email": "runner@runner.com",
+          "address": "800 Interstate Blvd",
+          "parent": "Jacoby Quinn",
+          "team_id": 3
+        }
+      }
+  ]
