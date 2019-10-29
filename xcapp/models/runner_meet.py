@@ -9,7 +9,7 @@ class RunnerMeet(models.Model):
     place = models.IntegerField()
     PR = models.BooleanField(null=True)
     runner = models.ForeignKey(Runner, on_delete=models.DO_NOTHING, related_name='runner')
-    meet= models.ForeignKey(Meet, on_delete=models.DO_NOTHING, related_name='meet')
+    meet= models.ForeignKey(Meet, on_delete=models.DO_NOTHING, related_name='runnermeet')
 
     class Meta:
         verbose_name = ("runner_meet")
