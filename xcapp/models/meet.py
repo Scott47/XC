@@ -5,7 +5,7 @@ class Meet(models.Model):
 
     name = models.CharField(max_length = 100)
     course = models.CharField(max_length = 100)
-    url = models.CharField(max_lenth = 50)
+    url = models.CharField(max_length = 50)
     latitude = models.DecimalField(max_digits=9, decimal_places=5)
     longitude = models.DecimalField(max_digits=9, decimal_places=5)
     date = models.DateField(auto_now_add = False)
