@@ -25,20 +25,6 @@ class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
 class RunnerMeets(ViewSet):
     """RunnerMeets for XC app"""
 
-    def list(self, request):
-        """Handle GET requests to RunnerMeets resource
-
-        Returns:
-            Response -- JSON serialized list of runnermeets
-        """
-        runner_meets = RunnerMeet.objects.all()
-        serializer = RunnerMeetSerializer(
-            runner_meets,
-            many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data)
-
     def create(self, request):
         """Handle POST operations
 
@@ -74,6 +60,9 @@ class RunnerMeets(ViewSet):
             Response -- Empty body with 204 status code
         """
         runner_meet = RunnerMeet.objects.get(pk=pk)
+        runner_meet.meet_time = request.data["meet_time"]
+        runner_meet.place = request.data["place"]
+        runner_meet.PR = request.data["PR"]
         runner_meet.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
@@ -95,3 +84,17 @@ class RunnerMeets(ViewSet):
 
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def list(self, request):
+        """Handle GET requests to RunnerMeets resource
+
+        Returns:
+            Response -- JSON serialized list of runnermeets
+        """
+        runner_meets = RunnerMeet.objects.all()
+        serializer = RunnerMeetSerializer(
+            runner_meets,
+            many=True,
+            context={'request': request}
+        )
+        return Response(serializer.data)

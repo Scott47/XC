@@ -33,6 +33,21 @@ class Teams(ViewSet):
     database to GET PUT POST and DELETE entries.
     Methods: GET, PUT, POST, DELETE
     """
+
+    def create(self, request):
+        """Handle POST operations
+
+        Returns:
+            Response -- JSON serialized Team instance
+        """
+        newteam = Team()
+        newteam.team_name = request.data["team_name"]
+        newteam.save()
+
+        serializer = TeamSerializer(newteam, context={'request': request})
+
+        return Response(serializer.data)
+
     def retrieve(self, request, pk=None):
 
         """Handle GET requests for single team
@@ -42,28 +57,29 @@ class Teams(ViewSet):
         """
         try:
             team = Team.objects.get(pk=pk)
-            serializer = TeamSerializer(runner, context={'request': request})
+            serializer = TeamSerializer(team, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
 
     def update(self, request, pk=None):
 
-        """Handle PUT requests for a meet
+        """Handle PUT requests for a team
 
             Response -- Empty body with 204 status code
         """
         team = Team.objects.get(pk=pk)
+        team.team_name = request.data["team_name"]
         team.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
     def list(self, request):
-        """Handle GET requests to orders resource
+        """Handle GET requests to teams resource
 
         Returns:
-            Response -- JSON serialized list of Orders
+            Response -- JSON serialized list of teams
         """
         # objects.all() is an abstraction that the Object Relational Mapper
         # (ORM) in Django provides that queries the table holding

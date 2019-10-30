@@ -4,3 +4,5 @@ from .runner_meet import RunnerMeets
 from .runner import Runners
 from .team_meet import TeamMeets
 from .team import Teams
+from .register import register_user
+from .register import login_user

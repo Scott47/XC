@@ -46,6 +46,8 @@ class Coaches(ViewSet):
         newcoach = Coach()
         newcoach.first_name = request.data["first_name"]
         newcoach.last_name = request.data["last_name"]
+        newcoach.phone_number = request.data["phone_number"]
+        user = Coach.objects.get(user=request.auth.user)
 
         newcoach.save()
 
