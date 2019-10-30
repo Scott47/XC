@@ -34,6 +34,29 @@ class Meets(ViewSet):
     database to GET PUT POST and DELETE entries.
     Methods: GET, PUT, POST, DELETE
     """
+
+    def create(self, request):
+        """Handle POST operations
+
+        Returns:
+            Response -- JSON serialized Runner instance
+        """
+        newmeet = Meet()
+        newmeet.name = request.data["name"]
+        newmeet.course = request.data["course"]
+        newmeet.url = request.data["url"]
+        newmeet.address = request.data["address"]
+        newmeet.latitude = request.data["latitude"]
+        newmeet.longitude = request.data["longitude"]
+        newmeet.date = request.data["date"]
+        newmeet.distance = request.data["distance"]
+        newmeet.number_of_runners = request.data["number_of_runners"]
+        newmeet.save()
+
+        serializer = MeetSerializer(newmeet, context={'request': request})
+
+        return Response(serializer.data)
+
     def retrieve(self, request, pk=None):
 
         """Handle GET requests for single meet
@@ -55,10 +78,36 @@ class Meets(ViewSet):
             Response -- Empty body with 204 status code
         """
         meet = Meet.objects.get(pk=pk)
-        meet.user.is_active = False
+        meet.name = request.data["name"]
+        meet.course = request.data["course"]
+        meet.url = request.data["url"]
+        meet.address = request.data["address"]
+        meet.latitude = request.data["latitude"]
+        meet.longitude = request.data["longitude"]
+        meet.date = request.data["date"]
+        meet.distance = request.data["distance"]
+        meet.number_of_runners = request.data["number_of_runners"]
         meet.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single meet
+
+        Returns:
+            Response -- 200, 404, or 500 status code
+        """
+        try:
+            meet = Meet.objects.get(pk=pk)
+            meet.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Meet.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
     def list(self, request):
