@@ -74,6 +74,8 @@ class TeamMeets(ViewSet):
             Response -- Empty body with 204 status code
         """
         team_meet = TeamMeet.objects.get(pk=pk)
+        team_meet.total_time = request.data["total_time"]
+        team_meet.points = request.data["points"]
         team_meet.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
