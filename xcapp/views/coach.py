@@ -37,6 +37,21 @@ class CoachSerializer(serializers.HyperlinkedModelSerializer):
 
 class Coaches(ViewSet):
     """Coaches for XC"""
+    def create(self, request):
+        """Handle POST operations
+
+        Returns:
+            Response -- JSON serialized Coach instance
+        """
+        newcoach = Coach()
+        newcoach.first_name = request.data["first_name"]
+        newcoach.last_name = request.data["last_name"]
+
+        newcoach.save()
+
+        serializer = CoachSerializer(newcoach, context={'request': request})
+
+        return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
 
