@@ -18,6 +18,8 @@
     "fields": {
         "name": "KIPP Invitational",
         "course": "KIPP Home Course",
+        "url": "https://tn.milesplit.com/meets/363061/info#.XbmstJNKhmA",
+        "address": "123 Douglas Ave, Nashville, TN 37207",
         "latitude": 36.149937,
         "longitude": -86.812866,
         "date": "2019-09-16",
@@ -31,6 +33,8 @@
         "fields": {
             "name": "Rossview Invitational",
             "course": "Rossview Home Course",
+            "url": "https://tn.milesplit.com/meets/363061/info#.XbmstJNKhmA",
+            "address": "1721 Merrywood Drive, Clarksville, TN 37043",
             "latitude": 36.149937,
             "longitude": -86.812866,
             "date": "2019-09-23",
@@ -44,6 +48,8 @@
         "fields": {
             "name": "NSS Invitational",
             "course": "NSS Home Course",
+            "url": "https://tn.milesplit.com/meets/363061/info#.XbmstJNKhmA",
+            "address": "301 Plus Park Blvd, Nashville, TN 37217",
             "latitude": 36.149937,
             "longitude": -86.812866,
             "date": "2019-09-30",
