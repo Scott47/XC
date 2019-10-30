@@ -6,7 +6,7 @@ from .meet import Meet
 class TeamMeet(models.Model):
 
 
-    meet_time = models.CharField(max_length=10)
+    total_time = models.FloatField(default=0)
     points = models.IntegerField()
     team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, related_name='team')
     meet= models.ForeignKey(Meet, on_delete=models.DO_NOTHING, related_name='teammeet')
