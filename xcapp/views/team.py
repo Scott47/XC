@@ -69,6 +69,7 @@ class Teams(ViewSet):
             Response -- Empty body with 204 status code
         """
         team = Team.objects.get(pk=pk)
+        team.team_name = request.data["team_name"]
         team.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
