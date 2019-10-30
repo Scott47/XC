@@ -23,7 +23,7 @@ class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 
 class RunnerMeets(ViewSet):
-    """RunnerMeets for Bangazon Galaydia Empire"""
+    """RunnerMeets for XC app"""
 
     def list(self, request):
         """Handle GET requests to RunnerMeets resource
@@ -43,7 +43,7 @@ class RunnerMeets(ViewSet):
         """Handle POST operations
 
         Returns:
-            Response -- JSON serialized order products instance
+            Response -- JSON serialized runner meets instance
         """
         runner_meet = RunnerMeet()
         runner_meet.runner = Runner.objects.get(pk=request.data["order"])
@@ -55,7 +55,7 @@ class RunnerMeets(ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        """Handle GET requests for single order product
+        """Handle GET requests for single runner meet
 
         Returns:
             Response -- JSON serialized runnermeet instance
@@ -79,7 +79,7 @@ class RunnerMeets(ViewSet):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk=None):
-        """Handle DELETE requests for a single order product
+        """Handle DELETE requests for a single runner meet
 
         Returns:
             Response -- 200, 404, or 500 status code
