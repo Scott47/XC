@@ -22,7 +22,8 @@ class MeetSerializer(serializers.HyperlinkedModelSerializer):
             view_name='meet',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'name', 'course', 'latitude', 'longitude', 'date', 'distance', 'number_of_runners')
+        fields = ('id', 'url', 'name', 'course', 'url', 'address',
+        'latitude', 'longitude', 'date', 'distance', 'number_of_runners')
         depth = 1
 
 
