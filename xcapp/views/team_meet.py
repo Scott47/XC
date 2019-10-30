@@ -19,7 +19,7 @@ class TeamMeetSerializer(serializers.HyperlinkedModelSerializer):
             view_name='teammeet',
             lookup_field='id'
         )
-        fields = ('id', 'meet_time', 'points', 'team', 'meet')
+        fields = ('id', 'total_time', 'points', 'team', 'meet')
         depth = 1
 
 class TeamMeets(ViewSet):
