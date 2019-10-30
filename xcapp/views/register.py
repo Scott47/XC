@@ -59,6 +59,9 @@ def register_user(request):
     )
 
     coach = Coach.objects.create(
+        first_name=req_body['first_name'],
+        last_name=req_body['last_name'],
+        phone_number=req_body['phone_number'],
         user=new_user
     )
 
