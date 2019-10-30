@@ -17,8 +17,16 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from xcapp.models import *
+from xcapp.views import *
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'users', Coaches, 'user')
+router.register(r'coaches', Coaches, 'coach')
+router.register(r'runners', Runners, 'runner')
+router.register(r'teams', Teams, 'team')
+router.register(r'meets', Meets, 'meet')
+router.register(r'runnermeets', RunnerMeets, 'runnermeet')
+router.register(r'teammeets', TeamMeets, 'teammeet')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

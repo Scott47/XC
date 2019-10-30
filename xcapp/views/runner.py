@@ -27,7 +27,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 
 
-class Meets(ViewSet):
+class Runners(ViewSet):
     """Runners for xcapp
     Author: Scott Silver
     Purpose: Handle logic for operations performed on the Runner model to manage client requests for runners.

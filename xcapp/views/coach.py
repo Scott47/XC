@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from django.contrib.auth.models import User
-from .coach import Coach
+from xcapp.models import Coach
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(many=True, view_name='user-detail', read_only=True)
@@ -32,10 +32,10 @@ class CoachSerializer(serializers.HyperlinkedModelSerializer):
             view_name='coach',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'name', 'user_id')
+        fields = ('id', 'url', 'first_name', 'last_name', 'phone_number', 'user_id')
 
 
-class coaches(ViewSet):
+class Coaches(ViewSet):
     """Coaches for XC"""
 
     def retrieve(self, request, pk=None):
