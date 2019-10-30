@@ -26,7 +26,7 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 
 
-class Meets(ViewSet):
+class Teams(ViewSet):
     """Teams for xcapp
     Author: Scott Silver
     Purpose: Handle logic for operations performed on the Team model to manage client requests for teams.
@@ -38,7 +38,7 @@ class Meets(ViewSet):
         """Handle GET requests for single team
 
         Returns:
-            Response -- JSON serialized meet instance
+            Response -- JSON serialized team instance
         """
         try:
             team = Team.objects.get(pk=pk)
