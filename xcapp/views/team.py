@@ -27,6 +27,7 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class Teams(ViewSet):
+
     """Teams for xcapp
     Author: Scott Silver
     Purpose: Handle logic for operations performed on the Team model to manage client requests for teams.
