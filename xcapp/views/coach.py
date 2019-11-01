@@ -32,7 +32,8 @@ class CoachSerializer(serializers.HyperlinkedModelSerializer):
             view_name='coach',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'first_name', 'last_name', 'phone_number', 'user_id')
+        fields = ('id', 'url', 'first_name', 'last_name', 'phone_number', 'teams')
+        depth = 1
 
 
 class Coaches(ViewSet):

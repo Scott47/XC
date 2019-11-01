@@ -24,7 +24,7 @@ class Runner(models.Model):
     email = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     parent = models.CharField(max_length=100)
-    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, related_name='runnerteam')
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='runnerteam')
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)

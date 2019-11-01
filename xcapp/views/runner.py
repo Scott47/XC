@@ -20,6 +20,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
         )
         fields = ('id', 'url', 'grade', 'first_name', 'last_name', 'phone',
         'email', 'address', 'parent', 'team')
+        depth = 2
 
 
 class Runners(ViewSet):
