@@ -1,0 +1,26 @@
+[
+    {
+        "model": "xcapp.coach_teams",
+        "pk": 1,
+        "fields": {
+          "coach_id": 2,
+          "team_id": 1
+        }
+      },
+  {
+    "model": "xcapp.coach_teams",
+    "pk": 2,
+    "fields": {
+      "coach_id": 2,
+      "team_id": 2
+    }
+  },
+  {
+    "model": "xcapp.coach_teams",
+    "pk": 2,
+    "fields": {
+      "coach_id": 2,
+      "team_id": 3
+    }
+  }
+]
