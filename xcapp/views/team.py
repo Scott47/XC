@@ -10,7 +10,7 @@ from xcapp.models import Team, Runner
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     """
     Author: Scott Silver
-    Purpose: JSON serializer for orders to convert native Python datatypes to
+    Purpose: JSON serializer for teams to convert native Python datatypes to
     be rendered into JSON
     Arguments:
         serializers.HyperlinkedModelSerializer
@@ -23,7 +23,7 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'team_name')
-        depth = 1
+        depth = 2
 
 
 class Teams(ViewSet):
