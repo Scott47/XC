@@ -1,8 +1,11 @@
 from django.db import models
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE
 from .team import Team
 
 
-class Runner(models.Model):
+class Runner(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
     FRESHMAN = 'FR'
     SOPHOMORE = 'SO'
     JUNIOR = 'JR'
