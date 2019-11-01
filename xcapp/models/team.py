@@ -1,7 +1,10 @@
 from django.db import models
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE
 
 
-class Team(models.Model):
+class Team(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
     FRESHMAN = 'FRESHMEN'
     JV = 'JV'
     VARSITY = 'VARSITY'
