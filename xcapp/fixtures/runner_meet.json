@@ -12,7 +12,7 @@
   },
   {
     "model": "xcapp.runnermeet",
-    "pk": 1,
+    "pk": 2,
     "fields": {
       "meet_time": 20.00,
       "place": 21,
@@ -23,7 +23,7 @@
   },
   {
     "model": "xcapp.runnermeet",
-    "pk": 2,
+    "pk": 3,
     "fields": {
       "meet_time": 18.50,
       "place": 4,
@@ -34,7 +34,7 @@
   },
   {
     "model": "xcapp.runnermeet",
-    "pk": 3,
+    "pk": 4,
     "fields": {
       "meet_time": 22.00,
       "place": 12,
@@ -42,5 +42,49 @@
       "meet_id": 3,
       "runner_id": 2
     }
+},
+{
+  "model": "xcapp.runnermeet",
+  "pk": 5,
+  "fields": {
+    "meet_time": 18.30,
+    "place": 21,
+    "PR": true,
+    "meet_id": 4,
+    "runner_id": 5
+  }
+},
+{
+  "model": "xcapp.runnermeet",
+  "pk": 6,
+  "fields": {
+    "meet_time": 20.00,
+    "place": 21,
+    "PR": true,
+    "meet_id": 1,
+    "runner_id": 8
+  }
+},
+{
+  "model": "xcapp.runnermeet",
+  "pk": 7,
+  "fields": {
+    "meet_time": 18.50,
+    "place": 4,
+    "PR": true,
+    "meet_id": 1,
+    "runner_id": 10
+  }
+},
+{
+  "model": "xcapp.runnermeet",
+  "pk": 8,
+  "fields": {
+    "meet_time": 22.00,
+    "place": 12,
+    "PR": false,
+    "meet_id": 3,
+    "runner_id": 7
+  }
 }
 ]

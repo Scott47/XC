@@ -112,6 +112,8 @@ class Runners(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
         runners = Runner.objects.all()
+
+
         serializer = RunnerSerializer(
             runners, many=True, context={'request': request})
 
