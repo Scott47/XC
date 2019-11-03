@@ -24,3 +24,6 @@ class Team(SafeDeleteModel):
         verbose_name = ("team")
         verbose_name_plural = ("teams")
 
+    @property
+    def roster(self):
+        return self.filter(runner__runnerteam=self.id).sort()
