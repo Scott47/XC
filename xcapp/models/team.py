@@ -23,3 +23,4 @@ class Team(SafeDeleteModel):
     class Meta:
         verbose_name = ("team")
         verbose_name_plural = ("teams")
+

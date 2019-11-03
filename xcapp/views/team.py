@@ -86,6 +86,14 @@ class Teams(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
         teams = Team.objects.all()
+        runners = Runner.objects.all()
+        Runner.objects.filter(team__team_name='runnerteam')
+
+
+        # runners = Runner.objects.filter(team)
+        # team.runnerteam.filter
+
+
         serializer = TeamSerializer(
             teams,
             many=True,

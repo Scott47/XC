@@ -19,7 +19,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'grade', 'first_name', 'last_name', 'phone',
-        'email', 'address', 'parent', 'team', 'runnermeet')
+        'email', 'address', 'parent', 'team', 'runnermeet', 'roster')
         depth = 2
 
 
@@ -73,12 +73,9 @@ class Runners(ViewSet):
         """
         runner= Runner.objects.get(pk=pk)
         runner.grade = request.data["grade"]
-        runner.first_name = request.data["first_name"]
-        runner.last_name = request.data["last_name"]
         runner.phone = request.data["phone"]
         runner.email = request.data["email"]
         runner.address = request.data["address"]
-        runner.parent = request.data["parent"]
         runner.team = Team.objects.get(pk=request.data["team"])
         runner.save()
 
@@ -112,6 +109,8 @@ class Runners(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
         runners = Runner.objects.all()
+
+
         serializer = RunnerSerializer(
             runners, many=True, context={'request': request})
 
