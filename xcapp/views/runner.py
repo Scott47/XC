@@ -73,12 +73,9 @@ class Runners(ViewSet):
         """
         runner= Runner.objects.get(pk=pk)
         runner.grade = request.data["grade"]
-        runner.first_name = request.data["first_name"]
-        runner.last_name = request.data["last_name"]
         runner.phone = request.data["phone"]
         runner.email = request.data["email"]
         runner.address = request.data["address"]
-        runner.parent = request.data["parent"]
         runner.team = Team.objects.get(pk=request.data["team"])
         runner.save()
 
