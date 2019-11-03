@@ -35,3 +35,7 @@ class Runner(SafeDeleteModel):
     class Meta:
         verbose_name = ("runner")
         verbose_name_plural = ("runners")
+
+    @property
+    def roster(self):
+        return self.runnerteam.filter(team=self.id).sort()

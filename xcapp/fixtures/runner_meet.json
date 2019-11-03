@@ -51,7 +51,7 @@
     "place": 21,
     "PR": true,
     "meet_id": 4,
-    "runner_id": 5
+    "runner_id": 4
   }
 },
 {
@@ -62,7 +62,7 @@
     "place": 21,
     "PR": true,
     "meet_id": 1,
-    "runner_id": 8
+    "runner_id": 4
   }
 },
 {
@@ -73,7 +73,7 @@
     "place": 4,
     "PR": true,
     "meet_id": 1,
-    "runner_id": 10
+    "runner_id": 4
   }
 },
 {
@@ -84,7 +84,7 @@
     "place": 12,
     "PR": false,
     "meet_id": 3,
-    "runner_id": 7
+    "runner_id": 4
   }
 }
 ]

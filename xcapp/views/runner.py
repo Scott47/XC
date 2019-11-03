@@ -19,7 +19,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'grade', 'first_name', 'last_name', 'phone',
-        'email', 'address', 'parent', 'team', 'runnermeet')
+        'email', 'address', 'parent', 'team', 'runnermeet', 'roster')
         depth = 2
 
 

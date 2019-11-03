@@ -32,8 +32,8 @@ class RunnerMeets(ViewSet):
             Response -- JSON serialized runner meets instance
         """
         runner_meet = RunnerMeet()
-        runner_meet.runner = Runner.objects.get(pk=request.data["order"])
-        runner_meet.meet = Meet.objects.get(pk=request.data["product"])
+        runner_meet.runner = Runner.objects.get(pk=request.data["runner"])
+        runner_meet.meet = Meet.objects.get(pk=request.data["meet"])
         runner_meet.save()
 
         serializer = RunnerMeetSerializer(runner_meet, context={'request': request})

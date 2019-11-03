@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from xcapp.models import Team
+from xcapp.models import Team, Runner
 
 
 
@@ -86,6 +86,13 @@ class Teams(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
         teams = Team.objects.all()
+        runners = Runner.objects.all()
+        Runner.objects.filter(team__team_name='runnerteam')
+
+
+        # runners = Runner.objects.filter(team)
+        # team.runnerteam.filter
+
 
         serializer = TeamSerializer(
             teams,

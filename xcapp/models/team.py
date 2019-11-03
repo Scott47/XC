@@ -1,5 +1,4 @@
 from django.db import models
-from .runner import Runner
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE
 
@@ -25,6 +24,3 @@ class Team(SafeDeleteModel):
         verbose_name = ("team")
         verbose_name_plural = ("teams")
 
-    @property
-    def roster(self):
-        runner = Runner.objects.filter(team=self, runner__team_id__isnull=False)
