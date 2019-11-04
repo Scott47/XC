@@ -120,8 +120,9 @@ class Meets(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
         meets = Meet.objects.all()
+        meetdates = Meet.objects.order_by('date')
         serializer = MeetSerializer(
-            meets,
+            meetdates,
             many=True,
             context={'request': request}
         )
