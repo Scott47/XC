@@ -14,6 +14,10 @@ class Meet(models.Model):
     number_of_runners = models.IntegerField()
 
     class Meta:
+        # ordering = ["date"]
         verbose_name = ("meet")
         verbose_name_plural = ("meets")
 
+    @property
+    def meetdate(self):
+        return self.sort(self.date)
