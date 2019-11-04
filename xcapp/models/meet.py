@@ -16,3 +16,4 @@ class Meet(models.Model):
     class Meta:
         verbose_name = ("meet")
         verbose_name_plural = ("meets")
+

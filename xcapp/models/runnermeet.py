@@ -14,3 +14,6 @@ class RunnerMeet(models.Model):
     class Meta:
         verbose_name = ("runner_meet")
         verbose_name_plural = ("runner_meets")
+
+
+

@@ -19,7 +19,6 @@ class Team(SafeDeleteModel):
         default=FRESHMAN,
     )
 
-
     class Meta:
         verbose_name = ("team")
         verbose_name_plural = ("teams")

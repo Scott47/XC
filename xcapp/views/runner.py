@@ -4,7 +4,25 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from xcapp.models import Runner, Team
+# from .team import TeamSerializer
 
+class RunnerTeamSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Author: Scott Silver
+    Purpose: JSON serializer for teams to convert native Python datatypes to
+    be rendered into JSON
+    Arguments:
+        serializers.HyperlinkedModelSerializer
+    """
+
+    class Meta:
+        model = Team
+        url = serializers.HyperlinkedIdentityField(
+            view_name='team',
+            lookup_field='id'
+        )
+        fields = ('id', 'team_name')
+        depth = 2
 
 class RunnerSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for runners
@@ -12,6 +30,8 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
     Arguments:
         serializers
     """
+    team = RunnerTeamSerializer(many=False)
+
     class Meta:
         model = Runner
         url = serializers.HyperlinkedIdentityField(

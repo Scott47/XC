@@ -4,8 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from xcapp.models import Team, Runner
-
-
+from .runner import RunnerSerializer
 
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     """
@@ -15,6 +14,7 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
     Arguments:
         serializers.HyperlinkedModelSerializer
     """
+    runnerteam = RunnerSerializer(many=True)
 
     class Meta:
         model = Team
