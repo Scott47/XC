@@ -6,6 +6,21 @@ from rest_framework import serializers
 from rest_framework import status
 from xcapp.models import RunnerMeet, Runner, Meet
 
+class RunnerSerializer(serializers.HyperlinkedModelSerializer):
+    """JSON serializer for runners
+
+    Arguments:
+        serializers
+    """
+
+    class Meta:
+        model = Runner
+        url = serializers.HyperlinkedIdentityField(
+            view_name='runner',
+            lookup_field='id'
+        )
+        fields = ('id', 'url')
+        depth = 2
 
 class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for RunnerMeets

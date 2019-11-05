@@ -46,11 +46,8 @@ class Meets(ViewSet):
         newmeet.course = request.data["course"]
         newmeet.url = request.data["url"]
         newmeet.address = request.data["address"]
-        newmeet.latitude = request.data["latitude"]
-        newmeet.longitude = request.data["longitude"]
         newmeet.date = request.data["date"]
         newmeet.distance = request.data["distance"]
-        newmeet.number_of_runners = request.data["number_of_runners"]
         newmeet.save()
 
         serializer = MeetSerializer(newmeet, context={'request': request})
