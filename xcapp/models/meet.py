@@ -7,17 +7,13 @@ class Meet(models.Model):
     course = models.CharField(max_length = 100)
     url = models.CharField(max_length = 50)
     address = models.CharField(max_length = 50)
-    latitude = models.DecimalField(max_digits=9, decimal_places=5)
-    longitude = models.DecimalField(max_digits=9, decimal_places=5)
+    latitude = models.DecimalField(max_digits=9, decimal_places=5, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=5, null=True)
     date = models.DateField(auto_now_add = False)
-    distance = models.DecimalField(max_digits=3, decimal_places=2)
-    number_of_runners = models.IntegerField()
+    distance = models.FloatField(default=0)
+    number_of_runners = models.IntegerField(null=True)
 
     class Meta:
-        # ordering = ["date"]
         verbose_name = ("meet")
         verbose_name_plural = ("meets")
 
-    @property
-    def meetdate(self):
-        return self.sort(self.date)

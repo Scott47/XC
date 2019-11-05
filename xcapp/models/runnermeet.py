@@ -12,6 +12,7 @@ class RunnerMeet(models.Model):
     meet= models.ForeignKey(Meet, on_delete=models.DO_NOTHING, related_name='meetrunner')
 
     class Meta:
+        ordering = ['runner']
         verbose_name = ("runner_meet")
         verbose_name_plural = ("runner_meets")
 
