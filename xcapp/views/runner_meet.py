@@ -34,8 +34,8 @@ class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
             view_name='runnermeet',
             lookup_field='id'
         )
-        fields = ('id', 'meet_time', 'place', 'PR', 'runner', 'meet')
-        depth = 1
+        fields = ('id', 'meet_time', 'place', 'PR', 'runner', 'meet', 'pace')
+        depth = 2
 
 class RunnerMeets(ViewSet):
     """RunnerMeets for XC app"""
