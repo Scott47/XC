@@ -8,8 +8,8 @@ class RunnerMeet(models.Model):
     meet_time = models.FloatField(default=0)
     place = models.IntegerField()
     PR = models.BooleanField(null=True)
-    runner = models.ForeignKey(Runner, on_delete=models.DO_NOTHING, related_name='runnermeet')
-    meet= models.ForeignKey(Meet, on_delete=models.DO_NOTHING, related_name='meetrunner')
+    runner = models.ForeignKey(Runner, on_delete=models.CASCADE, related_name='runnermeet')
+    meet= models.ForeignKey(Meet, on_delete=models.CASCADE, related_name='meetrunner')
 
     class Meta:
         ordering = ['runner']
