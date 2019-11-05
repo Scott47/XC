@@ -9,7 +9,7 @@ class Meet(models.Model):
     address = models.CharField(max_length = 50)
     latitude = models.DecimalField(max_digits=9, decimal_places=5, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=5, null=True)
-    date = models.DateField(auto_now_add = False)
+    date = models.DateTimeField(auto_now_add = False, null=True)
     distance = models.FloatField(default=0)
     number_of_runners = models.IntegerField(null=True)
 
