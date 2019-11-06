@@ -19,25 +19,11 @@ class TeamMeetSerializer(serializers.HyperlinkedModelSerializer):
             view_name='teammeet',
             lookup_field='id'
         )
-        fields = ('id', 'total_time', 'points', 'team', 'meet')
+        fields = ('id', 'total_time', 'points', 'team', 'meet', 'meet_year')
         depth = 1
 
 class TeamMeets(ViewSet):
     """TeamMeets for XC app"""
-
-    def list(self, request):
-        """Handle GET requests to TeamMeets resource
-
-        Returns:
-            Response -- JSON serialized list of teammeets
-        """
-        team_meets = TeamMeet.objects.all()
-        serializer = TeamMeetSerializer(
-            team_meets,
-            many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data)
 
     def create(self, request):
         """Handle POST operations
@@ -97,3 +83,23 @@ class TeamMeets(ViewSet):
 
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def list(self, request):
+        """Handle GET requests to TeamMeets resource
+
+        Returns:
+            Response -- JSON serialized list of teammeets
+        """
+        team_meets = TeamMeet.objects.all()
+        meet_year = self.request.query_params.get('meet_year', None)
+        print("FLAG", meet_year)
+
+        if meet_year is not None:
+            print('meetmonkeytonail saying')
+            team_meets = team_meets.filter(meet__date__iso_year=meet_year)
+        serializer = TeamMeetSerializer(
+            team_meets,
+            many=True,
+            context={'request': request}
+        )
+        return Response(serializer.data)
