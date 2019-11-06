@@ -3,8 +3,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from xcapp.models import Runner, Team
-# from .team import TeamSerializer
+from xcapp.models import Runner, Team, Meet, RunnerMeet
+from .runner_meet import RunnerMeetSerializer
 
 class RunnerTeamSerializer(serializers.HyperlinkedModelSerializer):
     """
@@ -24,6 +24,41 @@ class RunnerTeamSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'team_name')
         depth = 2
 
+class MeetSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Author: Scott Silver
+    Purpose: JSON serializer for orders to convert native Python datatypes to
+    be rendered into JSON
+    Arguments:
+        serializers.HyperlinkedModelSerializer
+    """
+    class Meta:
+        model = Meet
+        url = serializers.HyperlinkedIdentityField(
+            view_name='meet',
+            lookup_field='id'
+        )
+        fields = ('id', 'name')
+
+class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Author: Scott Silver
+    Purpose: JSON serializer for orders to convert native Python datatypes to
+    be rendered into JSON
+    Arguments:
+        serializers.HyperlinkedModelSerializer
+    """
+    meet = MeetSerializer(many=False)
+
+    class Meta:
+        model = RunnerMeet
+        url = serializers.HyperlinkedIdentityField(
+            view_name='meet',
+            lookup_field='id'
+        )
+        fields = ('id', 'url', 'meet')
+        depth = 1
+
 class RunnerSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for runners
 
@@ -31,6 +66,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
         serializers
     """
     team = RunnerTeamSerializer(many=False)
+    runnermeet = RunnerMeetSerializer(many=True)
 
     class Meta:
         model = Runner

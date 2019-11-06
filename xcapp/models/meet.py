@@ -11,7 +11,7 @@ class Meet(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=5, null=True)
     date = models.DateTimeField(auto_now_add = False)
     distance = models.FloatField(default=0)
-    number_of_runners = models.IntegerField(null=True)
+    number_of_runners = models.IntegerField(default=0, blank=True)
 
     class Meta:
         verbose_name = ("meet")
