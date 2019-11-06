@@ -34,7 +34,7 @@ class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
             view_name='runnermeet',
             lookup_field='id'
         )
-        fields = ('id', 'meet_time', 'place', 'PR', 'runner', 'meet', 'pace')
+        fields = ('id', 'meet_time', 'place', 'PR', 'runner', 'meet', 'pace', 'meet_year')
         depth = 2
 
 class RunnerMeets(ViewSet):
@@ -107,6 +107,13 @@ class RunnerMeets(ViewSet):
             Response -- JSON serialized list of runnermeets
         """
         runner_meets = RunnerMeet.objects.all()
+
+        meet_year = self.request.query_params.get('meet_year', None)
+        if meet_year is not None:
+            runner_meets.filter(meet=meet_year)
+
+
+
         serializer = RunnerMeetSerializer(
             runner_meets,
             many=True,

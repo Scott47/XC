@@ -3,8 +3,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
+from datetime import datetime
 from xcapp.models import Meet
-
 
 
 class MeetSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,7 +23,7 @@ class MeetSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'name', 'course', 'url', 'address',
-        'latitude', 'longitude', 'date', 'distance', 'number_of_runners')
+        'latitude', 'longitude', 'date', 'distance', 'number_of_runners', 'meet_year')
         depth = 1
 
 
@@ -118,8 +118,21 @@ class Meets(ViewSet):
         # all the meets, and returns every row.
         meets = Meet.objects.all()
         meetdates = Meet.objects.order_by('date')
+
+        # meet_list = Meet.objects.all().dates('date', 'year')
+        meetreport = self.request.query_params.get('meetreport', None)
+
+        if meetreport is not None:
+            meets = Meet.objects.filter(meat_year=meetreport)
+        #         meetdates = Meet.objects.filter(date__iso_year__gte = years.year)
+
+
+        # for meetreport in meet_list:
+        #     Meet.objects.filter(date__iso_year__gte=meetreport.year)
+
+
         serializer = MeetSerializer(
-            meetdates,
+            meets,
             many=True,
             context={'request': request}
         )

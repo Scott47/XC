@@ -21,3 +21,6 @@ class RunnerMeet(models.Model):
         return round(self.meet_time/self.meet.distance, 2)
 
 
+    @property
+    def meet_year(self):
+        return self.meet.date.strftime('%Y')
