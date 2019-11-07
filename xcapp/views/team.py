@@ -85,7 +85,7 @@ class Teams(ViewSet):
         # objects.all() is an abstraction that the Object Relational Mapper
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
-        teams = Team.objects.filter()
+        teams = Team.objects.all()
 
         serializer = TeamSerializer(
             teams,

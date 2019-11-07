@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from xcapp.models import Runner, Team, Meet, RunnerMeet
+from xcapp.models import Runner, Team, Meet, RunnerMeet, Coach
 from .runner_meet import RunnerMeetSerializer
 
 class RunnerTeamSerializer(serializers.HyperlinkedModelSerializer):
@@ -165,6 +165,13 @@ class Runners(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
         runners = Runner.objects.all()
+        coaches = Coach.objects.all()
+        runner_coach = self.request.query_params.get('team_id', None)
+
+        if runner_coach is not None:
+            runners = coaches.objects.filter(runner__runnerteam='runner_coach')
+
+
 
 
         serializer = RunnerSerializer(
