@@ -17,10 +17,34 @@
   },
   {
     "model": "xcapp.coach_teams",
-    "pk": 2,
+    "pk": 3,
     "fields": {
       "coach_id": 2,
       "team_id": 3
     }
-  }
+  },
+  {
+    "model": "xcapp.coach_teams",
+    "pk": 4,
+    "fields": {
+      "coach_id": 3,
+      "team_id": 1
+    }
+  },
+{
+"model": "xcapp.coach_teams",
+"pk": 5,
+"fields": {
+  "coach_id": 3,
+  "team_id": 2
+}
+},
+{
+"model": "xcapp.coach_teams",
+"pk": 6,
+"fields": {
+  "coach_id": 3,
+  "team_id": 3
+}
+}
 ]

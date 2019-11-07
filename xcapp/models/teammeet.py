@@ -14,3 +14,7 @@ class TeamMeet(models.Model):
     class Meta:
         verbose_name = ("team_meet")
         verbose_name_plural = ("team_meets")
+
+    @property
+    def meet_year(self):
+        return self.meet.date.strftime('%Y')

@@ -20,6 +20,7 @@ from xcapp.models import *
 from xcapp.views import *
 from xcapp.views import register_user, login_user
 
+
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', Coaches, 'user')
 router.register(r'coaches', Coaches, 'coach')
@@ -28,6 +29,7 @@ router.register(r'teams', Teams, 'team')
 router.register(r'meets', Meets, 'meet')
 router.register(r'runnermeets', RunnerMeets, 'runnermeet')
 router.register(r'teammeets', TeamMeets, 'teammeet')
+router.register(r'reports', RunnerMeets, 'meetreport')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

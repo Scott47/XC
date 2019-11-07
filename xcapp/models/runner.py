@@ -4,6 +4,7 @@ from safedelete.models import SOFT_DELETE
 from .team import Team
 
 
+
 class Runner(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
     FRESHMAN = 'FR'
@@ -40,7 +41,4 @@ class Runner(SafeDeleteModel):
     def roster(self):
         return self.runnerteam.filter(team=self.id).sort()
 
-    @property
-    def pace(self):
-        meet_time = Runner.objects.filter(runnermeet__meet_time=self.meetime)
-        return meet_time
+

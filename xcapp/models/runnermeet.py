@@ -16,5 +16,11 @@ class RunnerMeet(models.Model):
         verbose_name = ("runner_meet")
         verbose_name_plural = ("runner_meets")
 
+    @property
+    def pace(self):
+        return round(self.meet_time/self.meet.distance, 2)
 
 
+    @property
+    def meet_year(self):
+        return self.meet.date.strftime('%Y')

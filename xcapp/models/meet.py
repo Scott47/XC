@@ -9,11 +9,14 @@ class Meet(models.Model):
     address = models.CharField(max_length = 50)
     latitude = models.DecimalField(max_digits=9, decimal_places=5, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=5, null=True)
-    date = models.DateField(auto_now_add = False)
+    date = models.DateTimeField(auto_now_add = False)
     distance = models.FloatField(default=0)
-    number_of_runners = models.IntegerField(null=True)
+    number_of_runners = models.IntegerField(default=0, blank=True)
 
     class Meta:
         verbose_name = ("meet")
         verbose_name_plural = ("meets")
 
+    @property
+    def meet_year(self):
+        return self.date.strftime('%Y')

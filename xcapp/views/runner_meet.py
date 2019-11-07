@@ -4,7 +4,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from xcapp.models import RunnerMeet, Runner, Meet
+from xcapp.models import RunnerMeet, Runner, Meet, Team
+from .meet import MeetSerializer
 
 class RunnerSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for runners
@@ -22,20 +23,40 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url')
         depth = 2
 
+class MeetSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Author: Scott Silver
+    Purpose: JSON serializer for orders to convert native Python datatypes to
+    be rendered into JSON
+    Arguments:
+        serializers.HyperlinkedModelSerializer
+    """
+
+    class Meta:
+        model = Meet
+        url = serializers.HyperlinkedIdentityField(
+            view_name='meet',
+            lookup_field='id'
+        )
+        fields = ('id', 'url', 'date', 'name', 'distance', 'number_of_runners')
+        depth = 1
+
 class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for RunnerMeets
 
     Arguments:
         serializers.HyperlinkedModelSerializer
     """
+
+    meet = MeetSerializer(many=False)
     class Meta:
         model = RunnerMeet
         url = serializers.HyperlinkedIdentityField(
             view_name='runnermeet',
             lookup_field='id'
         )
-        fields = ('id', 'meet_time', 'place', 'PR', 'runner', 'meet')
-        depth = 1
+        fields = ('id', 'meet_time', 'place', 'PR', 'runner', 'meet', 'pace', 'meet_id', 'meet_year')
+        depth = 2
 
 class RunnerMeets(ViewSet):
     """RunnerMeets for XC app"""
@@ -46,12 +67,14 @@ class RunnerMeets(ViewSet):
         Returns:
             Response -- JSON serialized runner meets instance
         """
-        runner_meet = RunnerMeet()
-        runner_meet.runner = Runner.objects.get(pk=request.data["runner"])
-        runner_meet.meet = Meet.objects.get(pk=request.data["meet"])
-        runner_meet.save()
+        new_runner_meet = RunnerMeet()
+        new_runner_meet.runner = Runner.objects.get(pk=request.data["runner"])
+        new_runner_meet.team = Team.objects.get(pk=request.data["team"])
+        new_runner_meet.meet = Meet.objects.get(pk=request.data["meet"])
+        new_runner_meet.save()
 
-        serializer = RunnerMeetSerializer(runner_meet, context={'request': request})
+
+        serializer = RunnerMeetSerializer(new_runner_meet, context={'request': request})
 
         return Response(serializer.data)
 
@@ -107,6 +130,14 @@ class RunnerMeets(ViewSet):
             Response -- JSON serialized list of runnermeets
         """
         runner_meets = RunnerMeet.objects.all()
+
+        meet_year = self.request.query_params.get('meet_year', None)
+        print("FLAG", meet_year)
+
+        if meet_year is not None:
+            print('meetmonkeytonail saying')
+            runner_meets = runner_meets.filter(meet__date__iso_year=meet_year)
+
         serializer = RunnerMeetSerializer(
             runner_meets,
             many=True,
