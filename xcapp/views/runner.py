@@ -5,6 +5,7 @@ from rest_framework import serializers
 from rest_framework import status
 from xcapp.models import Runner, Team, Meet, RunnerMeet, Coach
 from .runner_meet import RunnerMeetSerializer
+# from .coach import CoachSerializer
 
 class RunnerTeamSerializer(serializers.HyperlinkedModelSerializer):
     """
@@ -67,6 +68,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
     """
     team = RunnerTeamSerializer(many=False)
     runnermeet = RunnerMeetSerializer(many=True)
+    # coach = CoachSerializer(many=True)
 
     class Meta:
         model = Runner
@@ -80,6 +82,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class Runners(ViewSet):
+
     """Runners for xcapp
     Author: Scott Silver
     Purpose: Handle logic for operations performed on the Runner model to manage client requests for runners.
@@ -164,10 +167,8 @@ class Runners(ViewSet):
         # objects.all() is an abstraction that the Object Relational Mapper
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
-        runners = Runner.objects.all()
-
-
-
+        coach = Coach.objects.get(pk=request.auth.user.id)
+        runners = Runner.objects.filter(team__coach=coach)
 
 
         serializer = RunnerSerializer(

@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from datetime import datetime
-from xcapp.models import Meet
+from xcapp.models import Meet, Coach, Team, TeamMeet
+from .team import TeamSerializer
 
 
 class MeetSerializer(serializers.HyperlinkedModelSerializer):
@@ -15,7 +16,6 @@ class MeetSerializer(serializers.HyperlinkedModelSerializer):
     Arguments:
         serializers.HyperlinkedModelSerializer
     """
-
     class Meta:
         model = Meet
         url = serializers.HyperlinkedIdentityField(
@@ -23,8 +23,9 @@ class MeetSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'name', 'course', 'url', 'address',
-        'latitude', 'longitude', 'date', 'distance', 'number_of_runners', 'meetrunner', 'meet_year')
-        depth = 1
+        'latitude', 'longitude', 'date', 'distance', 'number_of_runners',
+        'meetrunner', 'meet_year', 'teammeet')
+        depth = 3
 
 
 class Meets(ViewSet):
@@ -116,19 +117,27 @@ class Meets(ViewSet):
         # objects.all() is an abstraction that the Object Relational Mapper
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
+
+        # coach = Coach.objects.get(pk=request.auth.user.id)
+        # teams = Team.objects.all(coach=coach)
+
+        # teammeet = TeamMeet.objects.all(team_meet=teams)
+        # meets = Meet.objects.filter(teammeet__team_id__team_id=teams).order_by('date')
+
         meets = Meet.objects.all()
         meetdates = Meet.objects.order_by('date')
+        # meets = Meet.objects.filter(teammeet__team__coach=coach).order_by('date')
+        # meetdates = Meet.objects.order_by('date')
 
-        # meet_list = Meet.objects.all().dates('date', 'year')
+
         meetreport = self.request.query_params.get('meetreport', None)
 
         if meetreport is not None:
-            meets = Meet.objects.filter(meat_year=meetreport)
-        #         meetdates = Meet.objects.filter(date__iso_year__gte = years.year)
+            meets = meets.filter(meat_year=meetreport)
 
 
-        # for meetreport in meet_list:
-        #     Meet.objects.filter(date__iso_year__gte=meetreport.year)
+
+
 
 
         serializer = MeetSerializer(

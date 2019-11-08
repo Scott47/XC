@@ -55,7 +55,8 @@ class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
             view_name='runnermeet',
             lookup_field='id'
         )
-        fields = ('id', 'meet_time', 'place', 'PR', 'runner', 'meet', 'pace', 'meet_id', 'meet_year')
+        fields = ('id', 'meet_time', 'place', 'PR', 'runner',
+        'meet', 'pace', 'meet_id', 'meet_year')
         depth = 2
 
 class RunnerMeets(ViewSet):
@@ -79,6 +80,7 @@ class RunnerMeets(ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
+
         """Handle GET requests for single runner meet
 
         Returns:

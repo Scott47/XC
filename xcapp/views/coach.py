@@ -4,7 +4,9 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from django.contrib.auth.models import User
-from xcapp.models import Coach
+from xcapp.models import Coach, Team
+from .runner import RunnerSerializer
+from .team import TeamSerializer
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(many=True, view_name='user-detail', read_only=True)
@@ -20,19 +22,40 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                   'last_name', 'email', 'date_joined', 'is_active')
         depth = 1
 
+class TeamSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Author: Scott Silver
+    Purpose: JSON serializer for teams to convert native Python datatypes to
+    be rendered into JSON
+    Arguments:
+        serializers.HyperlinkedModelSerializer
+    """
+    runnerteam = RunnerSerializer(many=True)
+
+    class Meta:
+        model = Team
+        url = serializers.HyperlinkedIdentityField(
+            view_name='team',
+            lookup_field='id'
+        )
+        fields = ('id', 'url', 'runnerteam')
+        depth = 2
+
 class CoachSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for coaches
 
     Arguments:
         serializers.HyperlinkedModelSerializer
     """
+
+    teams = TeamSerializer(many=True)
     class Meta:
         model = Coach
         url = serializers.HyperlinkedIdentityField(
             view_name='coach',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'first_name', 'last_name', 'phone_number', 'teams')
+        fields = ('id', 'url', 'first_name', 'last_name', 'phone_number', 'teams' )
         depth = 1
 
 
@@ -89,6 +112,7 @@ class Coaches(ViewSet):
             Response -- JSON serialized list of coaches
         """
         coaches = Coach.objects.all()
+
         serializer = CoachSerializer(
             coaches,
             many=True,

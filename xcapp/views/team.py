@@ -3,8 +3,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from xcapp.models import Team, Runner
-from .runner import RunnerSerializer
+from xcapp.models import Team, Runner, Coach
+
 
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     """
@@ -14,7 +14,6 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
     Arguments:
         serializers.HyperlinkedModelSerializer
     """
-    runnerteam = RunnerSerializer(many=True)
 
     class Meta:
         model = Team
@@ -85,7 +84,10 @@ class Teams(ViewSet):
         # objects.all() is an abstraction that the Object Relational Mapper
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
-        teams = Team.objects.all()
+
+        coach = Coach.objects.get(pk=request.auth.user.id)
+        teams = Team.objects.filter(coach=coach)
+
 
         serializer = TeamSerializer(
             teams,
