@@ -26,14 +26,17 @@ class TeamMeets(ViewSet):
     """TeamMeets for XC app"""
 
     def create(self, request):
-        """Handle POST operations
+
+        """
+        Handle POST operations
 
         Returns:
             Response -- JSON serialized team meets instance
         """
+
         team_meet = TeamMeet()
-        team_meet.team = Team.objects.get(pk=request.data["order"])
-        team_meet.meet = Meet.objects.get(pk=request.data["product"])
+        team_meet.team = Team.objects.get(pk=request.data["team"])
+        team_meet.meet = Meet.objects.get(pk=request.data["meet"])
         team_meet.save()
 
         serializer = TeamMeetSerializer(team_meet, context={'request': request})
@@ -67,11 +70,13 @@ class TeamMeets(ViewSet):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk=None):
+
         """Handle DELETE requests for a single team meet
 
         Returns:
             Response -- 200, 404, or 500 status code
         """
+
         try:
             team_meet = TeamMeet.objects.get(pk=pk)
             team_meet.delete()
@@ -85,11 +90,13 @@ class TeamMeets(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
+
         """Handle GET requests to TeamMeets resource
 
         Returns:
             Response -- JSON serialized list of teammeets
         """
+
         team_meets = TeamMeet.objects.all()
         meet_year = self.request.query_params.get('meet_year', None)
         print("FLAG", meet_year)
@@ -97,9 +104,11 @@ class TeamMeets(ViewSet):
         if meet_year is not None:
             print('meetmonkeytonail saying')
             team_meets = team_meets.filter(meet__date__iso_year=meet_year)
+
         serializer = TeamMeetSerializer(
             team_meets,
             many=True,
             context={'request': request}
         )
+
         return Response(serializer.data)

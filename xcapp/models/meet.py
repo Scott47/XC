@@ -1,4 +1,5 @@
 from django.db import models
+from .teammeet import TeamMeet
 
 
 class Meet(models.Model):
@@ -20,3 +21,7 @@ class Meet(models.Model):
     @property
     def meet_year(self):
         return self.date.strftime('%Y')
+
+    @property
+    def team_meet_coach(self):
+        return TeamMeet.objects.filter(meet=self, team__id=team_id)
