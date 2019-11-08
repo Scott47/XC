@@ -1,5 +1,7 @@
 from django.db import models
-from .teammeet import TeamMeet
+# from .teammeet import TeamMeet
+# from .coach import Coach
+
 
 
 class Meet(models.Model):
@@ -24,4 +26,4 @@ class Meet(models.Model):
 
     @property
     def team_meet_coach(self):
-        return TeamMeet.objects.filter(meet=self, team__id=team_id)
+        return Meet.objects.filter(meet=self, team__id='teammeet')

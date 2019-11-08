@@ -25,7 +25,7 @@ class MeetSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'name', 'course', 'url', 'address',
         'latitude', 'longitude', 'date', 'distance', 'number_of_runners',
         'meetrunner', 'meet_year', 'teammeet')
-        depth = 2
+        depth = 3
 
 
 class Meets(ViewSet):
@@ -118,25 +118,26 @@ class Meets(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
 
-        coach = Coach.objects.get(pk=request.auth.user.id)
-        # team = Team.objects.filter(coach=coach)
-        teammeet = TeamMeet.objects.all(team=coach)
+        # coach = Coach.objects.get(pk=request.auth.user.id)
+        # teams = Team.objects.all(coach=coach)
 
-        meets = Meet.objects.filter(teammeet__team__coach=coach).order_by('date')
+        # teammeet = TeamMeet.objects.all(team_meet=teams)
+        # meets = Meet.objects.filter(teammeet__team_id__team_id=teams).order_by('date')
+
+        meets = Meet.objects.all()
+        meetdates = Meet.objects.order_by('date')
+        # meets = Meet.objects.filter(teammeet__team__coach=coach).order_by('date')
         # meetdates = Meet.objects.order_by('date')
 
 
-
-        # meet_list = Meet.objects.all().dates('date', 'year')
         meetreport = self.request.query_params.get('meetreport', None)
 
         if meetreport is not None:
             meets = meets.filter(meat_year=meetreport)
-        #         meetdates = Meet.objects.filter(date__iso_year__gte = years.year)
 
 
-        # for meetreport in meet_list:
-        #     Meet.objects.filter(date__iso_year__gte=meetreport.year)
+
+
 
 
         serializer = MeetSerializer(
