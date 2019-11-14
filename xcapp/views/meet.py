@@ -136,10 +136,6 @@ class Meets(ViewSet):
             meets = meets.filter(meat_year=meetreport)
 
 
-
-
-
-
         serializer = MeetSerializer(
             meets,
             many=True,

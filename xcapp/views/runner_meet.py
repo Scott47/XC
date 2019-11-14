@@ -69,9 +69,10 @@ class RunnerMeets(ViewSet):
             Response -- JSON serialized runner meets instance
         """
         new_runner_meet = RunnerMeet()
-        new_runner_meet.runner = Runner.objects.get(pk=request.data["runner"])
-        new_runner_meet.team = Team.objects.get(pk=request.data["team"])
-        new_runner_meet.meet = Meet.objects.get(pk=request.data["meet"])
+        new_runner_meet.runner = Runner.objects.get(pk=request.data["runner_id"])
+        new_runner_meet.meet = Meet.objects.get(pk=request.data["meet_id"])
+        new_runner_meet.meet_time = 11.25
+        new_runner_meet.place = 2
         new_runner_meet.save()
 
 

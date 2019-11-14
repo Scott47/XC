@@ -29,7 +29,7 @@ router.register(r'teams', Teams, 'team')
 router.register(r'meets', Meets, 'meet')
 router.register(r'runnermeets', RunnerMeets, 'runnermeet')
 router.register(r'teammeets', TeamMeets, 'teammeet')
-router.register(r'reports', RunnerMeets, 'meetreport')
+router.register(r'reports', Reports, 'meetreport')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
