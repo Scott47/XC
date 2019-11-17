@@ -6,6 +6,7 @@ from rest_framework import status
 from xcapp.models import Team, Runner, Coach
 
 
+
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     """
     Author: Scott Silver
@@ -87,6 +88,7 @@ class Teams(ViewSet):
 
         coach = Coach.objects.get(pk=request.auth.user.id)
         teams = Team.objects.filter(coach=coach)
+
 
 
         serializer = TeamSerializer(
