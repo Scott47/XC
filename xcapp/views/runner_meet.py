@@ -141,6 +141,7 @@ class RunnerMeets(ViewSet):
             print('meetmonkeytonail saying')
             runner_meets = runner_meets.filter(meet__date__iso_year=meet_year)
 
+
         serializer = RunnerMeetSerializer(
             runner_meets,
             many=True,
