@@ -174,7 +174,7 @@ class Runners(ViewSet):
         teams = self.request.query_params.get('team', None)
 
         if teams is not None:
-            runners = Runner.objects.filter(runner_team__id = teams)
+            runners = Runner.objects.filter(team_id = teams)
 
 
         serializer = RunnerSerializer(
