@@ -99,10 +99,10 @@ class TeamMeets(ViewSet):
 
         team_meets = TeamMeet.objects.all()
         meet_year = self.request.query_params.get('meet_year', None)
-        print("FLAG", meet_year)
+
 
         if meet_year is not None:
-            print('meetmonkeytonail saying')
+
             team_meets = team_meets.filter(meet__date__iso_year=meet_year)
 
         serializer = TeamMeetSerializer(

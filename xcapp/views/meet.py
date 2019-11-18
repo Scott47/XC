@@ -118,17 +118,8 @@ class Meets(ViewSet):
         # (ORM) in Django provides that queries the table holding
         # all the meets, and returns every row.
 
-        # coach = Coach.objects.get(pk=request.auth.user.id)
-        # teams = Team.objects.all(coach=coach)
-
-        # teammeet = TeamMeet.objects.all(team_meet=teams)
-        # meets = Meet.objects.filter(teammeet__team_id__team_id=teams).order_by('date')
-
         meets = Meet.objects.all()
         meetdates = Meet.objects.order_by('date')
-        # meets = Meet.objects.filter(teammeet__team__coach=coach).order_by('date')
-        # meetdates = Meet.objects.order_by('date')
-
 
         meetreport = self.request.query_params.get('meetreport', None)
 
