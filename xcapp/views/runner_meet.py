@@ -135,10 +135,9 @@ class RunnerMeets(ViewSet):
         runner_meets = RunnerMeet.objects.all()
 
         meet_year = self.request.query_params.get('meet_year', None)
-        print("FLAG", meet_year)
 
         if meet_year is not None:
-            print('meetmonkeytonail saying')
+
             runner_meets = runner_meets.filter(meet__date__iso_year=meet_year)
 
 

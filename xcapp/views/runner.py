@@ -57,7 +57,7 @@ class RunnerMeetSerializer(serializers.HyperlinkedModelSerializer):
             view_name='meet',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'meet')
+        fields = ('id', 'url', 'meet', 'meet_time', 'place')
         depth = 1
 
 class RunnerSerializer(serializers.HyperlinkedModelSerializer):
