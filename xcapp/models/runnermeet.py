@@ -6,7 +6,7 @@ from .meet import Meet
 class RunnerMeet(models.Model):
 
     meet_time = models.FloatField(default=0)
-    place = models.IntegerField()
+    place = models.IntegerField(default=0)
     PR = models.BooleanField(null=True)
     runner = models.ForeignKey(Runner, on_delete=models.CASCADE, related_name='runnermeet')
     meet= models.ForeignKey(Meet, on_delete=models.CASCADE, related_name='meetrunner')

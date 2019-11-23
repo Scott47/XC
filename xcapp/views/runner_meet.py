@@ -71,8 +71,8 @@ class RunnerMeets(ViewSet):
         new_runner_meet = RunnerMeet()
         new_runner_meet.runner = Runner.objects.get(pk=request.data["runner_id"])
         new_runner_meet.meet = Meet.objects.get(pk=request.data["meet_id"])
-        new_runner_meet.meet_time = 11.25
-        new_runner_meet.place = 2
+        new_runner_meet.meet_time = request.data["meet_time"]
+        new_runner_meet.place = request.data["place"]
         new_runner_meet.save()
 
 
