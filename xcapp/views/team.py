@@ -43,6 +43,7 @@ class Teams(ViewSet):
         """
         newteam = Team()
         newteam.team_name = request.data["team_name"]
+        newteam.coach = Coach.objects.get(pk=request.auth.user.id)
         newteam.save()
 
         serializer = TeamSerializer(newteam, context={'request': request})
