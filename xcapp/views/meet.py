@@ -80,8 +80,6 @@ class Meets(ViewSet):
         meet.course = request.data["course"]
         meet.url = request.data["url"]
         meet.address = request.data["address"]
-        meet.latitude = request.data["latitude"]
-        meet.longitude = request.data["longitude"]
         meet.date = request.data["date"]
         meet.distance = request.data["distance"]
         meet.number_of_runners = request.data["number_of_runners"]

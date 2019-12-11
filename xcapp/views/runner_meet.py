@@ -103,7 +103,6 @@ class RunnerMeets(ViewSet):
         runner_meet = RunnerMeet.objects.get(pk=pk)
         runner_meet.meet_time = request.data["meet_time"]
         runner_meet.place = request.data["place"]
-        runner_meet.PR = request.data["PR"]
         runner_meet.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
