@@ -4,7 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from xcapp.models import RunnerMeet, Runner, Meet, Team
+from xcapp.models import RunnerMeet, Runner, Meet, Team, Coach
 from .meet import MeetSerializer
 
 class RunnerSerializer(serializers.HyperlinkedModelSerializer):
@@ -131,6 +131,7 @@ class RunnerMeets(ViewSet):
         Returns:
             Response -- JSON serialized list of runnermeets
         """
+        coach = Coach.objects.get(pk=request.auth.user.id)
         runner_meets = RunnerMeet.objects.all()
 
         meet_year = self.request.query_params.get('meet_year', None)
