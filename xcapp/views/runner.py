@@ -77,7 +77,7 @@ class RunnerSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'grade', 'first_name', 'last_name', 'phone',
-        'email', 'address', 'parent', 'team', 'runnermeet', 'roster')
+        'email', 'address', 'parent', 'team', 'runnermeet')
         depth = 2
 
 
@@ -175,6 +175,8 @@ class Runners(ViewSet):
 
         if teams is not None:
             runners = Runner.objects.filter(team_id = teams)
+            number_of_runners = runners.count()
+
 
 
         serializer = RunnerSerializer(

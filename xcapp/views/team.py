@@ -22,7 +22,7 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
             view_name='team',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'team_name', 'runnerteam')
+        fields = ('id', 'url', 'team_name', 'runnerteam', 'number_of_runners')
         depth = 2
 
 
@@ -91,6 +91,7 @@ class Teams(ViewSet):
         # all the meets, and returns every row.
 
         coach = Coach.objects.get(pk=request.auth.user.id)
+        # number_of_runners = Team.objects.filter(team__runnerteam_team).count()
         teams = Team.objects.filter(coach=coach)
 
 
