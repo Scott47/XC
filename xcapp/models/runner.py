@@ -39,6 +39,6 @@ class Runner(SafeDeleteModel):
 
     @property
     def roster(self):
-        return self.runnerteam.filter(team=self.id).sort().count()
+        return self.runnerteam.filter(team=self.id).sort()
 
 

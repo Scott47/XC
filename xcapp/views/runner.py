@@ -171,11 +171,12 @@ class Runners(ViewSet):
         coach = Coach.objects.get(pk=request.auth.user.id)
         runners = Runner.objects.filter(team__coach=coach)
 
+
         teams = self.request.query_params.get('team', None)
 
         if teams is not None:
             runners = Runner.objects.filter(team_id = teams)
-            number_of_runners = runners.count()
+
 
 
 
