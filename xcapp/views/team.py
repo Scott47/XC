@@ -22,7 +22,7 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
             view_name='team',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'team_name', 'runnerteam')
+        fields = ('id', 'url', 'team_name', 'runnerteam', 'number_of_runners')
         depth = 2
 
 

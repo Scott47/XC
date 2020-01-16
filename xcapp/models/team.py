@@ -1,6 +1,8 @@
 from django.db import models
+from django.db.models import Q, Count
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE
+
 
 
 class Team(SafeDeleteModel):
@@ -23,6 +25,10 @@ class Team(SafeDeleteModel):
         verbose_name = ("team")
         verbose_name_plural = ("teams")
 
+    # @property
+    # def roster(self):
+    #     return self.filter(runner__runnerteam=self.id).sort()
+
     @property
-    def roster(self):
-        return self.filter(runner__runnerteam=self.id).sort()
+    def number_of_runners(self):
+        return self.filter(team__runnerteam_team=self.team_name).count()
